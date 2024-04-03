@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="../public/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo-container">
+    <img src="../images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" width="100%" ;/>
+    <h1><span th:text="${session.currentUser.email}"></span></h1>
+</div>
+
+<h1> Thank you for your order</h1>
+
+<p>You will receive a notification when your order is ready for pickup. </p>
+
+<h2>Order information</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Cupcake topping</th>
+        <th>Cupcake bottom</th>
+        <th>Amount</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="item : ${cart.items}">
+        <td th:text="${item.cupcakeTop}"></td>
+        <td th:text="${item.cupcakeBottom}"></td>
+        <td th:text="${item.amount}"></td>
+        <td th:text="${item.price}"></td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
