@@ -1,0 +1,222 @@
+/* index page */
+
+html * {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img {
+    width: 100%;
+}
+
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    padding: 8px;
+    border: 1px solid silver;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 40px;
+}
+
+header a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header a img {
+    width: 70%;
+}
+
+h1 {
+    font-size: 2.125rem;
+}
+
+h2 {
+    font-size: 1.875rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.error {
+    border: 1px solid red;
+    padding: 10px;
+    color: red;
+    max-width: 400px;
+}
+
+.generic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.generic-form input[type=text],
+.generic-form input[type=password],
+.generic-form button {
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+
+.generic-form button:hover {
+    background-color: darkgray;
+}
+
+
+
+#menu-image {
+    max-width: 600px;
+    height: 250px;
+}
+
+
+/* createuser page */
+
+
+.pagee {
+    border: 1px solid black;
+    padding: 0px 0px 10px 0px;
+    text-align: center;
+}
+
+img.image {
+    width: 100%;
+}
+
+
+form.generic-form {
+    width: 50%;
+    margin: auto;
+}
+
+/* orderConfirmation page */
+
+table, th, td {
+    border: 1px solid;
+}
+
+/* shoppingCart page */
+
+table, th, td {
+    border: 1px solid;
+}
+.shoppingCart-button {
+    background-color: #3081b2;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btnFlex {
+    display: flex;
+    gap:10px;
+
+}
+
+/* cupcake page */
+
+nav {
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Distribute items along the main axis with space between */
+    align-items: center; /* Align items vertically */
+}
+
+.parentflex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    background-color: #d3d3d3;
+
+
+    .navigation {
+        display: flex;
+        gap: 10px;
+    }
+
+    .flexos {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        p {
+            margin: 0px;
+        }
+
+        i.fas.fa-shopping-basket {
+            font-size: 25px;
+        }
+    }
+
+
+}
+
+
+
+.cupcake-container {
+    background-color: lightgray; /* Gray background color */
+    padding: 10px; /* Padding around the navigation */
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.Ordrer-Kunder button:first-child {
+    margin-right: 50px; /* Adjust as needed */
+}
+
+.button-size {
+    font-size: 20px;
+}
+
+.text-size {
+    font-size: 25px;
+}
+
+
+
+select {
+    margin-right: 50px;
+    font-size: 20px;
+    margin-bottom: 25px;
+
+}
+
+.payment {
+    margin-left: 450px /* Align text to the right */
+}
+
+
+.payment button {
+    background-color: #3081b2;
+    color: white;
+    padding: 10px 20px; /* Padding around the button */
+    border: none;
+    border-radius: 5px;
+    font-size: 22px;
+}
+
+select#quantity {
+    margin: 0;
+}
+
+
+
+

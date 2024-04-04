@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="da" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>createuser</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../public/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="pagee">
+  <header>
+    <a href="index.html" th:href="@{/public}">
+    <img class="image" alt="logo" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}"/>
+    </a>
+
+  </header>
+
+  <h1>Create new user</h1>
+
+  <form class="generic-form" method="post">
+    <input type="text" name="username" placeholder="Enter your email"/>
+    <input type="password" name="password1" placeholder="Enter your password"/>
+    <input type="password" name="password2" placeholder="Enter your password again"/>
+
+    <button type="submit" formaction="/createuser">Create user</button>
+    <div><p th:text="${message}"></p></div>
+  </form>
+
+  <p>or</p>
+  <div>
+    <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout</a>
+  </div>
+</div>
+</body>
+</html>
+

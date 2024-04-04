@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>shoppingCart</title>
+    <link href="../public/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="page">
+    <header>
+        <img alt="logo" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}"/>
+        <h1><span th:text="${session.currentUser.email}"></span></h1>
+    </header>
+
+
+<h1> Shoppingcart</h1>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>Cupcake topping</th>
+        <th>Cupcake bottom</th>
+        <th>Amount</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="item : ${cart.items}">
+        <td th:text="${item.cupcakeTop}"></td>
+        <td th:text="${item.cupcakeBottom}"></td>
+        <td th:text="${item.amount}"></td>
+        <td th:text="${item.price}"></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<h1>Total</h1>
+<p>Subtotal: <span th:text="${#numbers.formatDecimal(cart.totalPrice(), 0, 'COMMA',2)}"></span></p>
+
+<div class="btnFlex">
+    <button type="submit" formaction="/orderConfirmation.html" class="shoppingCart-button">Confirm order</button>
+    <button type="submit" formaction="/order.html" class="shoppingCart-button">Return to order</button>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Forside</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="page">
+    <header>
+        <img alt="logo" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}"/>
+    </header>
+
+    <h1>Welcome to Cupcake Heaven</h1>
+    <h3>--- Cupcake Menu ---</h3>
+    <img id="menu-image" alt="logo" src="../public/images/menu.png" th:src="@{/images/menu.png}" />
+
+    <p>Explore our delicious cupcake menu and treat yourself to a delightful experience! From classic flavors to unique combinations, we have something to satisfy every sweet tooth.</p>
+    <p>To place an order, please log in below. If you don't have an account yet, you can create one.</p>
+
+<h3>If you need to log in - do it here</h3>
+<form class="generic-form" method="post">
+    <input type="text" name="email" placeholder="Enter your email"/>
+    <input type="password" name="password" placeholder="Enter your password"/>
+    <button class="btn btn-ok" type="submit" formaction="/login">Login</button>
+    <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
+</form>
+
+
+
+<div>
+    <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout</a>
+    <span  th:if="${session.currentUser != null}"> | </span>
+    <a href="createuser.html" th:href="@{/createuser}">Create user</a>
+</div>
+
+</div>
+
+
+</body>
+</html>
