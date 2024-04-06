@@ -25,9 +25,10 @@ public class UserMapper
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
-                int id = rs.getInt("user_id");
-                String role=rs.getString("role");
-                return new User(id, email, password,role);
+                int user_id = rs.getInt("user_id");
+                String role = rs.getString("role");
+                int balance = rs.getInt("balance");
+                return new User(user_id, email, password,role, balance);
             } else
             {
                 throw new DatabaseException("Fejl i login. Prøv igen");
@@ -35,13 +36,13 @@ public class UserMapper
         }
         catch (SQLException e)
         {
-            throw new DatabaseException("DB fejl", e.getMessage());
+            throw new DatabaseException("DB fejl!", e.getMessage());
         }
     }
 
     public static void createuser(String email, String password, ConnectionPool connectionPool) throws DatabaseException
     {
-        String sql = "insert into users (email, password) values (?,?)";
+        String sql = "insert into users (email, password, balance) values (?,?,?)";
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -50,6 +51,7 @@ public class UserMapper
         {
             ps.setString(1, email);
             ps.setString(2, password);
+            ps.setInt(3, 0);
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected != 1)
@@ -62,7 +64,7 @@ public class UserMapper
             String msg = "Der er sket en fejl. Prøv igen";
             if (e.getMessage().startsWith("ERROR: duplicate key value "))
             {
-                msg = "Brugernavnet findes allerede. Vælg et andet";
+                msg = "Email findes allerede. Vælg et andet";
             }
             throw new DatabaseException(msg, e.getMessage());
         }

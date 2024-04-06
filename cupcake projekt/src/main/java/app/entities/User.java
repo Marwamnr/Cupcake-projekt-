@@ -5,12 +5,14 @@ public class User {
     private String email;
     private String password;
     private String role;
+    private int balance;
 
-    public User(int UserId, String email, String password, String role) {
+    public User(int UserId, String email, String password, String role, int balance) {
         this.UserId = UserId;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.balance = balance;
     }
 
     public int getUserId() {
@@ -29,6 +31,13 @@ public class User {
         return role;
     }
 
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
     @Override
     public String toString() {
         return "User{" +
@@ -36,6 +45,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", balance=" + balance +
                 '}';
     }
 }

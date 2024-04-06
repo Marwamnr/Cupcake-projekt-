@@ -21,7 +21,7 @@
   <h1>Create new user</h1>
 
   <form class="generic-form" method="post">
-    <input type="text" name="username" placeholder="Enter your email"/>
+    <input type="text" name="email" placeholder="Enter your email"/>
     <input type="password" name="password1" placeholder="Enter your password"/>
     <input type="password" name="password2" placeholder="Enter your password again"/>
 
@@ -32,6 +32,8 @@
   <p>or</p>
   <div>
     <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout</a>
+
+
   </div>
 </div>
 </body>

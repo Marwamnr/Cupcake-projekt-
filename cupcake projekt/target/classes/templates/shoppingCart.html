@@ -13,7 +13,7 @@
         <img alt="logo" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}"/>
         <h1><span th:text="${session.currentUser.email}"></span></h1>
     </header>
-
+</div>
 
 <h1> Shoppingcart</h1>
 
@@ -29,7 +29,7 @@
     </thead>
     <tbody>
 
-    <tr th:each="item : ${cart.items}">
+    <tr th:each="item : ${cart}">
         <td th:text="${item.cupcakeTop}"></td>
         <td th:text="${item.cupcakeBottom}"></td>
         <td th:text="${item.amount}"></td>
@@ -40,7 +40,7 @@
 </table>
 
 <h1>Total</h1>
-<p>Subtotal: <span th:text="${#numbers.formatDecimal(cart.totalPrice(), 0, 'COMMA',2)}"></span></p>
+    <p>Subtotal: <span th:text="TotalPrice"></span></p>
 
 <div class="btnFlex">
     <button type="submit" formaction="/orderConfirmation.html" class="shoppingCart-button">Confirm order</button>

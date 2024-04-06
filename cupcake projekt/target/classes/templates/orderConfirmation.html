@@ -2,17 +2,22 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>orderConfirmation</title>
+  <title>Title</title>
+
   <link href="../public/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
 
+  <style>
+    table, th, td {
+      border: 1px solid;
+    }
+  </style>
 </head>
 <body>
 
-<div class="page">
-  <header>
-    <img alt="logo" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}"/>
-    <h1><span th:text="${session.currentUser.email}"></span></h1>
-  </header>
+<div class="logo-container">
+  <img class="image" alt="logo" src="../public/images/cupcake.png" th:src="@{/images/cupcake.png}"/>
+  <p><span th:text="${session.currentUser.email}"></span></p>
+</div>
 
 <h1> Thank you for your order</h1>
 
@@ -31,7 +36,7 @@
   </thead>
   <tbody>
 
-  <tr th:each="item : ${cart.items}">
+  <tr th:each="item : ${cart}">
     <td th:text="${item.cupcakeTop}"></td>
     <td th:text="${item.cupcakeBottom}"></td>
     <td th:text="${item.amount}"></td>
