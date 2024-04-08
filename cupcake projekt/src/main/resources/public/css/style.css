@@ -169,8 +169,6 @@ nav {
 
 }
 
-
-
 .cupcake-container {
     background-color: lightgray; /* Gray background color */
     padding: 10px; /* Padding around the navigation */
@@ -217,6 +215,8 @@ select {
 select#quantity {
     margin: 0;
 }
+
+
 
 /* Order page */
 

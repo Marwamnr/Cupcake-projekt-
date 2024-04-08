@@ -22,7 +22,7 @@ public class OrderController {
             ctx.attribute("orderList", orderList);
 
             // Rendere ordrelistevisningen
-            ctx.render("Order.html");
+            ctx.render("order.html");
         } catch (Exception e) {
             // Håndter eventuelle undtagelser
             ctx.status(500).result("Fejl ved hentning af ordreliste: " + e.getMessage());

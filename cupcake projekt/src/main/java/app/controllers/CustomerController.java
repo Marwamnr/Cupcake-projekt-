@@ -26,7 +26,7 @@ public class CustomerController {
             ctx.attribute("customerList", customerList);
 
             // Render the order list view
-            ctx.render("Customer.html");
+            ctx.render("customer.html");
         } catch (DatabaseException e) {
             // Handle database exception
             ctx.status(500).result("Error retrieving order list: " + e.getMessage());

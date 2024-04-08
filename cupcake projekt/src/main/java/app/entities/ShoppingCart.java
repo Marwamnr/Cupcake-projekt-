@@ -4,28 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    private List<Orderline>shoppingCartList;
+    private List<ShoppingCartLine> shoppingCartList;
 
     public ShoppingCart(){
         this.shoppingCartList= new ArrayList<>();
     }
 
-    public List<Orderline> getShoppingCartList() {
+    public List<ShoppingCartLine> getShoppingCartList() {
         return shoppingCartList;
     }
 
-    public void addOrderline(Orderline orderline){
-        shoppingCartList.add(orderline);
+    public void add(Topping topping, Bund bund, int amount){
+        ShoppingCartLine shoppingCartLine = new ShoppingCartLine(bund, topping, amount);
+        shoppingCartList.add(shoppingCartLine);
     }
 
     public void removeOrderline(Orderline orderline){
         shoppingCartList.remove(orderline);
     }
 
-    public double totalPriceOrder(){
-        double totalPrice=0.0;
-        for(Orderline orderline:shoppingCartList)
-            totalPrice+=orderline.getPrice();
-        return totalPrice;
+    public double totalPriceShoppingCart(){
+        double sum = 0;
+        for (ShoppingCartLine shoppingCartLine : shoppingCartList) {
+           sum += shoppingCartLine.getAmount() * (shoppingCartLine.getBund().getBundPrice() + shoppingCartLine.getTopping().getToppingPrice());
+        }
+       return sum;
     }
 }

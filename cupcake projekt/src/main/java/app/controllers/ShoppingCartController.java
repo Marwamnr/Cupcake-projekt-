@@ -2,56 +2,64 @@ package app.controllers;
 
 import app.entities.Orderline;
 import app.entities.ShoppingCart;
+import app.entities.Topping;
+import app.entities.Bund;
 import app.entities.User;
 import app.exceptions.DatabaseException;
+import app.persistence.BundMapper;
 import app.persistence.ConnectionPool;
 import app.persistence.OrderlineMapper;
+import app.persistence.ToppingMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+
 import java.util.List;
 import java.util.ArrayList;
 
 
 public class ShoppingCartController {
-    public static void addRoutes(Javalin app, ConnectionPool connectionPool,ShoppingCart shoppingCart){
-        app.post("/add-to-cart", ctx->addToCart(ctx, shoppingCart));
+    public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+        app.post("/addtocart", ctx -> addToCart(ctx, connectionPool));
 
         //app.get("/shoppingCart", ctx -> ctx.render("shoppingCart.html"));
-        app.get("/shoppingCart", ctx->shoppingCartOverview(ctx, shoppingCart));
+        app.get("/shoppingCart", ctx -> shoppingCartOverview(ctx));
 
         //app.post("/orderConfirmation", ctx -> addorderline(ctx, connectionPool));
 
-        app.post("/orderConfirmation", ctx->orderConfirmation(ctx, shoppingCart));
-        app.post("/returnToOrder", ctx->ctx.render("Cupcake.html"));
+        app.post("/orderConfirmation", ctx -> orderConfirmation(ctx));
+        app.post("/returnToOrder", ctx -> ctx.render("cupcake.html"));
     }
 
-    private static void addToCart(Context ctx, ShoppingCart shoppingCart) {
-        int price=Integer.parseInt(ctx.formParam("price"));
-        int orderlineId = Integer.parseInt(ctx.formParam("orderlineid"));
-        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+    private static void addToCart(Context ctx, ConnectionPool connectionPool) {
         int bottomId = Integer.parseInt(ctx.formParam("bottomId"));
         int toppingId = Integer.parseInt(ctx.formParam("toppingId"));
-        int amount=Integer.parseInt(ctx.formParam("amount"));
-
-        User currentUser=ctx.sessionAttribute("currentUser");
-
-        Orderline orderline= new Orderline(price,orderlineId,orderId,bottomId,toppingId,amount);
-
-        shoppingCart.addOrderline(orderline);
+        int amount = Integer.parseInt(ctx.formParam("quantity"));
+        User currentUser = ctx.sessionAttribute("currentUser");
+        try {
+            Bund bund = BundMapper.getBundsById(bottomId, connectionPool);
+            Topping topping = ToppingMapper.getToppingsById(toppingId, connectionPool);
+            ShoppingCart shoppingCart = ctx.sessionAttribute("shoppingCart");
+            if (shoppingCart == null) {
+                shoppingCart = new ShoppingCart();
+            }
+            shoppingCart.add(topping, bund, amount);
+            ctx.sessionAttribute("shoppingCart", shoppingCart);
+            ctx.render("shoppingCart.html");
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private static void shoppingCartOverview(Context ctx, ShoppingCart shoppingCart) {
+    private static void shoppingCartOverview(Context ctx) {
 
-        List<Orderline>shoppingCartList=shoppingCart.getShoppingCartList();
-        double totalPrice = shoppingCart.totalPriceOrder();
-        ctx.attribute("cart",shoppingCartList);
-        ctx.attribute("TotalPrice",totalPrice);
+        ShoppingCart shoppingCart = ctx.sessionAttribute("shoppingCart");
+        double totalPrice = shoppingCart.totalPriceShoppingCart();
+        ctx.attribute("cart", shoppingCart);
+        ctx.attribute("TotalPrice", totalPrice);
         ctx.render("shoppingCart.html");
     }
 
-    private static void orderConfirmation(Context ctx, ShoppingCart shoppingCart) {
-        List<Orderline>shoppingCartList=shoppingCart.getShoppingCartList();
-        ctx.attribute("cart",shoppingCartList);
+    private static void orderConfirmation(Context ctx) {
         ctx.render("orderConfirmation.html");
     }
 

@@ -23,31 +23,17 @@ public class Main {
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
-        // Routing
-        UserController.addRoutes(app,connectionPool);
-        ShoppingCartController.addRoutes(app,connectionPool,new ShoppingCart());
 
-        app.get("/", ctx -> {
-            ctx.attribute("toppingList", ToppingMapper.getToppings(connectionPool));
-            ctx.attribute("bundList", BundMapper.getBunds(connectionPool));
-            ctx.render("Cupcake.html");
-        });
 
-        app.get("/order", ctx -> {
-            //ctx.attribute("orderList", OrderMapper.getOrders(connectionPool));
-            ctx.render("Order.html");
-        });
-
-        app.get("/customer", ctx -> {
-            ctx.attribute("customerList", CustomerMapper.getCustomer(connectionPool));
-            ctx.render("Customer.html");
-        });
+        ShoppingCart shoppingCart = new ShoppingCart();
 
         // Add routes for controllers
         BundController.addRoutes(app, connectionPool);
         OrderController.addRoutes(app, connectionPool);
         ToppingController.addRoutes(app, connectionPool);
         CustomerController.addRoutes(app, connectionPool);
-
+        BalanceController.addRoutes(app, connectionPool);
+        UserController.addRoutes(app, connectionPool);
+        ShoppingCartController.addRoutes(app, connectionPool);
     }
 }

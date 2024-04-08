@@ -26,7 +26,7 @@ public class BundController {
             ctx.attribute("bundList", bundList);
 
             // Render the bund list view
-            ctx.render("Cupcake.html");
+            ctx.render("cupcake.html");
         } catch (DatabaseException e) {
             // Handle database exception
             ctx.status(500).result("Error retrieving bund list: " + e.getMessage());

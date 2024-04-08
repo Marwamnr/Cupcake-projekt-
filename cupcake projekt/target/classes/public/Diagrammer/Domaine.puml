@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!pragma layout smetana
+
+object customer
+object cupcake
+object order
+object orderline
+object shoppingcart
+object payment
+object cupcakeshop
+object buttom
+object top
+object employee
+
+
+
+cupcakeshop --> cupcake
+cupcakeshop --> employee
+cupcakeshop --> customer
+
+customer --> shoppingcart
+cupcake --> shoppingcart
+
+customer --> order
+employee --> order
+
+order --> payment
+order --> orderline
+
+orderline --> buttom
+orderline --> top
+
+
+
+
+
+@enduml

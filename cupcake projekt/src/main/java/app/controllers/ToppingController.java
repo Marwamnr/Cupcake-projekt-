@@ -25,7 +25,7 @@ public class ToppingController {
             ctx.attribute("toppingList", toppingList);
 
             // Render the topping list view
-            ctx.render("Cupcake.html");
+            ctx.render("cupcake.html");
         } catch (DatabaseException e) {
             // Handle database exception
             ctx.status(500).result("Error retrieving topping list: " + e.getMessage());

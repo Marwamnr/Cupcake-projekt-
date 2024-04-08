@@ -29,12 +29,11 @@
     </thead>
     <tbody>
 
-    <tr th:each="item : ${cart}">
-        <td th:text="${item.cupcakeTop}"></td>
-        <td th:text="${item.cupcakeBottom}"></td>
+    <tr th:each="item : ${session.shoppingCart.ShoppingCartList}">
+        <td th:text="${item.topping.toppingname}"></td>
+        <td th:text="${item.bund.bundname}"></td>
         <td th:text="${item.amount}"></td>
-        <td th:text="${item.price}"></td>
-
+        <td th:text="${item.getPrice()}"></td>
     </tr>
     </tbody>
 </table>
